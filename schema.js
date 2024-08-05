@@ -1,3 +1,5 @@
+// DataType would be => int, float , string,boolean,ID
+// id:ID!   ! mean the filed is required if not it not requried
 export const typeDefs = `#graphql
 type Game{
     id:ID!
@@ -29,6 +31,13 @@ type Query{
     authors:[Author]
     author(id:ID!):Author
 }
+
+type Mutation {
+    deleteGame(id:ID!): [Game]
+    addGame(game:AddGameInput!): Game
+}
+input AddGameInput {
+    title:String!,
+    platform:[String!]!
+}
 `;
-// DataType would be => int, float , string,boolean,ID
-// id:ID!   ! mean the filed is required if not it not requried

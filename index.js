@@ -47,13 +47,27 @@ const resolvers = {
       return db.reviews.filter((r) => r.author_id === parent.id);
     },
   },
-
   Review: {
     game(parent) {
       return db.games.find((g) => g.id === parent.id);
     },
     author(parent) {
       return db.authors.find((a) => a.id === parent.id);
+    },
+  },
+
+  Mutation: {
+    deleteGame(_, args) {
+      db.games = db.games.filter((g) => g.id !== args.id);
+      return db.games;
+    },
+    addGame(_, args) {
+      let game = {
+        ...args.game,
+        id: Math.floor(Math.random() * 10000).toString(),
+      };
+      db.games.push(game);
+      return game;
     },
   },
 };
