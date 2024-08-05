@@ -15,6 +15,26 @@ const resolvers = {
     authors() {
       return db.authors;
     },
+    review(_, args) {
+      // 3 => first => parent second => args third is context
+      return db.reviews.find((review) => review.id === args.id);
+      //   example query  for fetch
+      // query reviewQuery( $id: ID!) {
+      //     review(id: $id) {
+      //       content,
+      //       id,
+      //       rating
+
+      //     }
+      //     }
+    },
+
+    game(_, args) {
+      return db.games.find((game) => game.id === args.id);
+    },
+    author(_, args) {
+      return db.authors.find((author) => author.id === args.id);
+    },
   },
 };
 // server setup
